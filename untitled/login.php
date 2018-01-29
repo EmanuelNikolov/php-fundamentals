@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['login_user']=$username; // Initializing Session
             header("location: profile.php"); // Redirecting To Other Page
         } else {
-            $error = "Username or Password is invalid";1
+            $error = "Username or Password is invalid";
         }
         mysql_close($connection); // Closing Connection
     }
