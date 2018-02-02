@@ -1,7 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: John
- * Date: 2/2/2018
- * Time: 7:14 PM
- */
+$num = $argv[1];
+
+if (is_numeric($num) == TRUE) {
+    do {
+        echo $num . " ";
+        ++$num;
+    } while ($num <= 10);
+} else {
+    echo "Wrong type of data";
+}
