@@ -9,4 +9,7 @@
     </select>
     <input type="submit" name="submit" value="Submit"/>
 </form>
-<?= $output ?>
+<?php
+if (isset($output)) {
+    echo $output;
+}
