@@ -1,6 +1,6 @@
 <?php
-$sequence = explode(" ", trim(fgets(STDIN)));
-$count = count($sequence);
+    $sequence = explode(" ", trim(fgets(STDIN)));
+    $count = count($sequence);
 $longest = 0;
 
 for ($i = 0; $i < $count; ++$i) {
