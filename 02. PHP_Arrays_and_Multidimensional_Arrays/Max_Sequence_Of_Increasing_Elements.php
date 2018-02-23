@@ -1,6 +1,6 @@
 <?php
-    $sequence = explode(" ", trim(fgets(STDIN)));
-    $count = count($sequence);
+$sequence = explode(" ", trim(fgets(STDIN)));
+$count = count($sequence);
 $longest = 0;
 
 for ($i = 0; $i < $count; ++$i) {
@@ -19,4 +19,6 @@ for ($i = 0; $i < $count; ++$i) {
         $startIndex = $i;
     }
 }
+unset($count);
+
 echo implode(" ", array_slice($sequence, $startIndex, $longest));
