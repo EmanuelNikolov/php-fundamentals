@@ -5,10 +5,8 @@ $longest = 0;
 
 for ($i = 0; $i < $count; ++$i) {
     $currentCount = 1;
-    $current = $sequence[$i];
     for ($l = $i + 1; $l < $count; ++$l) {
-        if ($sequence[$l] > $current) {
-            $current = $sequence[$l];
+        if ($sequence[$l] > $sequence[$i]) {
             $currentCount++;
         } else {
             break;
