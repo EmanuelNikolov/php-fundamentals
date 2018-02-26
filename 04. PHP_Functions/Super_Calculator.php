@@ -6,7 +6,7 @@ while (true) {
     if ($input === "finally") {
         break;
     }
-    $args = array(); //TODO: Could use function(...$args)
+    $args = array(); // Could use function(...$args)
     $reflection = new ReflectionFunction($input);
     $argCount = $reflection->getNumberOfRequiredParameters();
     for ($i = 0; $i < $argCount; ++$i) {
@@ -32,7 +32,7 @@ while (true) {
             }
             break;
         }
-            $args = array_splice($result, 0, $argCount); // Selecting first args.
+            $args = array_splice($result, 0, $argCount); // Selecting first args
             $result[] = $input(...$args);
         }
     } catch (Exception $ex) {
