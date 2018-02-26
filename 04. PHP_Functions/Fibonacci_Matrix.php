@@ -1,26 +1,34 @@
 <?php
+declare(strict_types=1);
+
 $input = array_map("intval", explode(" ", trim(fgets(STDIN))));
 
-$zeroArr = array_fill(0, count($input), $input[0]);
-
-$firstArr = function (array $arr) use ($zeroArr) {
-    if (count($arr) > 2) {
+$result = function (array $row): array {
+    $zeroRow = array_fill(0, count($row), $row[0]);
+    if (count($row) > 2) {
         $lastTwo = array();
-        foreach ($arr as $num) {
-            $lastTwo[] = $zeroArr[0] + $num;
+        foreach ($row as $num) {
+            $lastTwo[] = $zeroRow[0] + $num;
         }
-        $prevArr = $arr;
+        $firstTwo = $lastTwo; // Second two rows for later merging
+        $prevRow = $row;
         $columnSum = array();
-        for ($l = 0; $l < count($arr) - 3; ++$l) {
+        for ($l = 0; $l < count($row) - 3; ++$l) {
 //            $columnSum = array();
-            for ($i = 0; $i < count($arr); ++$i) {
-                $columnSum[] = $lastTwo[$i] + $prevArr[$i];
-                $prevArr[$i] = $lastTwo[$i];
+            for ($i = 0; $i < count($row); ++$i) {
+                $columnSum[] = $lastTwo[$i] + $prevRow[$i];
+                $prevRow[$i] = $lastTwo[$i];
                 $lastTwo[$i] = $columnSum[$i];
             }
         }
-        return $columnSum;
+        return array_merge($zeroRow, $row, $firstTwo, $columnSum);
     }
-    return $arr;
+    return array_merge($zeroRow, $row);
 };
-var_dump($firstArr($input));
+
+$endResult = array_chunk($result($input), count($input));
+
+foreach ($endResult as $value) {
+    echo implode(" ", $value);
+    echo PHP_EOL;
+}
