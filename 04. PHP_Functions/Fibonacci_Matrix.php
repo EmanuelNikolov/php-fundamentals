@@ -28,6 +28,7 @@ $result = function (array $row): array {
 
 $endResult = array_chunk($result($input), count($input));
 
+echo "Result:\n";
 foreach ($endResult as $value) {
     echo implode(" ", $value);
     echo PHP_EOL;
