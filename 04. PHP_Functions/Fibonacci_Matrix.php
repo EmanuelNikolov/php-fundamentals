@@ -12,15 +12,12 @@ $firstArr = function (array $arr) use ($zeroArr) {
         $prevArr = $arr;
         $columnSum = array();
         for ($l = 0; $l < count($arr) - 3; ++$l) {
-            $columnSum = array();
+//            $columnSum = array();
             for ($i = 0; $i < count($arr); ++$i) {
-                for ($n = 0; $n < 1; ++$n) {
-                    $columnSum[] = $lastTwo[$i] + $prevArr[$i];
-                }
+                $columnSum[] = $lastTwo[$i] + $prevArr[$i];
                 $prevArr[$i] = $lastTwo[$i];
                 $lastTwo[$i] = $columnSum[$i];
             }
-
         }
         return $columnSum;
     }
