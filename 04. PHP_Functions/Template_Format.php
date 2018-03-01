@@ -4,7 +4,8 @@ $input = array_chunk(explode(", ", trim(fgets(STDIN))), 2);
 
 echo $result = toXML($input);
 
-function toXML(array $input): string {
+function toXML(array $input): string
+{
     $bodyArr = array();
     for ($i = 0; $i < count($input); ++$i) {
         $question = "<question>\n" . $input[$i][0] . "\n" . "</question>\n";

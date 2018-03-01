@@ -14,8 +14,9 @@ for ($i = 0; $i < count($input); $i += 2) {
     echo PHP_EOL;
 }
 
-function inRange(float $a, float $b, array $locations): string {
-    foreach ($locations as $key=>$value) {
+function inRange(float $a, float $b, array $locations): string
+{
+    foreach ($locations as $key => $value) {
         if ($a >= $value[0] && $a <= $value[1] && $b >= $value[2] && $b <= $value[3]) {
             return $key;
         }

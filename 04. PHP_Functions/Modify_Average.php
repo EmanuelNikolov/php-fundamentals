@@ -8,6 +8,7 @@ while (!isAverage($input)) {
 
 echo implode("", $input);
 
-function isAverage(array $input): bool {
+function isAverage(array $input): bool
+{
     return array_sum($input) / count($input) > 5;
 }
