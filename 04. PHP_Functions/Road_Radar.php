@@ -9,7 +9,8 @@ if ($penalty) {
     echo $penalty;
 }
 
-function getLimit(string $area): int {
+function getLimit(string $area): int
+{
     switch ($area) {
         case "residential":
             $limit = 20;
@@ -26,13 +27,17 @@ function getLimit(string $area): int {
     }
     return $limit;
 }
-function getPenalty(int $speed, int $limit) {
+
+function getPenalty(int $speed, int $limit)
+{
     $overSpeed = $speed - $limit;
     if ($overSpeed >= 0) {
-        if ($overSpeed <= 20)
+        if ($overSpeed <= 20) {
             return "speeding";
-        if ($overSpeed <= 40)
+        }
+        if ($overSpeed <= 40) {
             return "excessive speeding";
+        }
         return "reckless driving";
     }
     return false;

@@ -19,7 +19,8 @@ for ($i = 0; $i < $input; ++$i) {
     }
 }
 
-function getLetter(): string {
+function getLetter(): string
+{
     static $letter = 0;
     return DNA[$letter++ % strlen(DNA)]; // Looping correctly with modulus operator (10)
 }
