@@ -53,7 +53,7 @@ class Company
             }
         }
 
-        usort($this->bestPaidInDep, function ($employee1, $employee2) {
+        usort($this->bestPaidInDep, function (Employee $employee1, Employee $employee2) {
             return $employee2->getSalary() <=> $employee1->getSalary();
         });
     }

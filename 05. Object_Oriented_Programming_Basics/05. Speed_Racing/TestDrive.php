@@ -16,11 +16,10 @@ class TestDrive
     {
         $countCars = trim(fgets(STDIN));
 
-        while ($countCars > 0) {
+        while ($countCars--) {
             $carSpecs = explode(" ", trim(fgets(STDIN)));
             $car = new Car(...$carSpecs);
             $this->cars[] = $car;
-            $countCars--;
         }
 
         while (true) {
@@ -32,6 +31,10 @@ class TestDrive
 
             foreach ($this->cars as $car) {
                 try {
+                    if ($driveSpecs[1] == "AlfaRomeo145") {
+                        throw new Exception("Fatal Error: Please input a real car :P");
+                    }
+
                     if ($car->getModel() == $driveSpecs[1]) {
                         $car->driveCar($driveSpecs[2]);
                         $this->testedCars[$car->getId()] = $car;
