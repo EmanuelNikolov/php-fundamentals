@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace PizzaModels;
 
 use Factories\MoodFactory;
 
-class Ganjdalf
+class Wizard
 {
 
     /**

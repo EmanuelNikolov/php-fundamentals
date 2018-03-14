@@ -1,12 +1,12 @@
 <?php
 
 use Factories\FoodFactory;
-use Models\Ganjdalf;
+use PizzaModels\Wizard;
 
 class WizardAnalyser
 {
     /**
-     * @var Ganjdalf
+     * @var Wizard
      */
     private $wizard;
 
@@ -22,7 +22,7 @@ class WizardAnalyser
         $filterInput = preg_replace("~[^a-z,]~i", "", $input);
         $foods = explode(",", $filterInput);
 
-        $wizard = new Ganjdalf();
+        $wizard = new Wizard();
 
         foreach ($foods as $food) {
             $food = FoodFactory::createFood($food);

@@ -1,7 +1,7 @@
 <?php
 namespace Factories;
 
-use Models\Food;
+use PizzaModels\Food;
 
 class FoodFactory
 {

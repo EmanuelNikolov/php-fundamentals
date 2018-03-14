@@ -1,7 +1,7 @@
 <?php
 namespace Factories;
 
-use Models\Mood;
+use PizzaModels\Mood;
 
 class MoodFactory
 {

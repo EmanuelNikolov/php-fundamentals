@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace PizzaModels;
 
 class Food
 {
