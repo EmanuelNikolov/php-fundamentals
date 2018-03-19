@@ -2,9 +2,6 @@
 
 namespace SmartphoneModels;
 
-use SmartphoneModels\Browsable;
-use SmartphoneModels\CallingInterface;
-
 class Smartphone implements Browsable, CallingInterface
 {
 
