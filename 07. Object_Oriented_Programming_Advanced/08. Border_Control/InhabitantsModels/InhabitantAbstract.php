@@ -25,4 +25,9 @@ abstract class InhabitantAbstract implements Identifiable
     {
         return $this->name;
     }
+
+    public function __toString()
+    {
+        return $this->id;
+    }
 }

@@ -6,19 +6,26 @@ use InhabitantsModels\Robot;
 class BorderApp
 {
 
-    private const CITIZEN_COUNT_PARAM = 3;
+    private const CITIZEN_PARAM_COUNT = 3;
 
     private $fakeId;
 
     /**
-     * @var \InhabitantsModels\Citizen[]
+     * @var \InhabitantsModels\InhabitantAbstract[]
      */
-    private $citizens = [];
+    private $inhabitants = [];
 
     /**
-     * @var \InhabitantsModels\Robot[]
+     * @var \InhabitantsModels\InhabitantAbstract[]
      */
-    private $robots = [];
+    private $criminals = [];
+
+    public function start()
+    {
+        $this->processInput();
+        $this->checkInhabitants();
+        echo $this;
+    }
 
     private function processInput()
     {
@@ -31,18 +38,38 @@ class BorderApp
 
             $input = explode(" ", $input);
 
-            if (count($input) === self::CITIZEN_COUNT_PARAM) {
-                $this->citizens[] = new Citizen(...$input);
+            if (count($input) === self::CITIZEN_PARAM_COUNT) {
+                $this->inhabitants[] = new Citizen(...$input);
             } else {
-                $this->robots[] = new Robot(...$input);
+                $this->inhabitants[] = new Robot(...$input);
             }
         }
 
         $this->fakeId = trim(fgets(STDIN));
     }
 
-    private function checkId(string $id): bool
+    private function checkInhabitants()
     {
-        
+        foreach ($this->inhabitants as $inhabitant) {
+            if ($this->isValidId($inhabitant)) {
+                $this->criminals[] = $inhabitant;
+            }
+        }
+    }
+
+    private function isValidId(\InhabitantsModels\Identifiable $inhabitant): bool
+    {
+        $id = $inhabitant->getId();
+
+        if (strpos($id, $this->fakeId, -(strlen($this->fakeId)))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function __toString()
+    {
+        return implode(PHP_EOL, $this->criminals);
     }
 }
