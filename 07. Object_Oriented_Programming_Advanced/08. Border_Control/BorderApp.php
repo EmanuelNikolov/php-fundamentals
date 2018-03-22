@@ -6,12 +6,15 @@ use InhabitantsModels\Robot;
 class BorderApp
 {
 
-    private const CITIZEN_PARAM_COUNT = 3;
+    private const CITIZEN_PARAM_COUNT = 4;
+
+    private const PET_PARAM_COUNT = 3;
 
     private $fakeId;
 
     /**
      * @var \InhabitantsModels\InhabitantAbstract[]
+     * @var \InhabitantsModels\Birthable[]
      */
     private $inhabitants = [];
 
@@ -37,12 +40,10 @@ class BorderApp
             }
 
             $input = explode(" ", $input);
+            $token = array_shift($input);
+            $token = '\\InhabitantsModels\\' . $token;
 
-            if (count($input) === self::CITIZEN_PARAM_COUNT) {
-                $this->inhabitants[] = new Citizen(...$input);
-            } else {
-                $this->inhabitants[] = new Robot(...$input);
-            }
+            $this->inhabitants[] = new $token(...$input);
         }
 
         $this->fakeId = trim(fgets(STDIN));
@@ -51,16 +52,16 @@ class BorderApp
     private function checkInhabitants()
     {
         foreach ($this->inhabitants as $inhabitant) {
-            if ($this->isValidId($inhabitant)) {
-                $this->criminals[] = $inhabitant;
+            if (!$inhabitant instanceof Robot) {
+                if ($this->isValidId($inhabitant->getBirthDay())) {
+                    $this->criminals[] = $inhabitant;
+                }
             }
         }
     }
 
-    private function isValidId(\InhabitantsModels\Identifiable $inhabitant): bool
+    private function isValidId(string $id): bool
     {
-        $id = $inhabitant->getId();
-
         if (strpos($id, $this->fakeId, -(strlen($this->fakeId)))) {
             return true;
         }

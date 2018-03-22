@@ -3,10 +3,8 @@
 namespace InhabitantsModels;
 
 
-abstract class InhabitantAbstract implements Identifiable
+abstract class InhabitantAbstract
 {
-
-    private $id;
 
     private $name;
 
@@ -14,11 +12,6 @@ abstract class InhabitantAbstract implements Identifiable
     {
         $this->id = $id;
         $this->name = $name;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getName(): string
