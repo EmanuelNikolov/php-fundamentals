@@ -3,10 +3,16 @@
 namespace InhabitantsModels;
 
 
-class Citizen extends InhabitantAbstract implements Birthable
+class Citizen extends InhabitantAbstract implements Identifiable, Birthable, Buyer
 {
 
+    private const FOOD_PACK = 10;
+
+    private $food = 0;
+
     private $age;
+
+    private $id;
 
     private $birthDate;
 
@@ -16,8 +22,9 @@ class Citizen extends InhabitantAbstract implements Birthable
       string $id,
       string $birthDate
     ) {
-        parent::__construct($name, $id);
+        parent::__construct($name);
         $this->age = $age;
+        $this->id = $id;
         $this->birthDate = $birthDate;
     }
 
@@ -34,5 +41,20 @@ class Citizen extends InhabitantAbstract implements Birthable
     public function __toString()
     {
         return $this->birthDate;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function BuyFood(): void
+    {
+        $this->food += self::FOOD_PACK;
+    }
+
+    public function getFood(): int
+    {
+        return $this->food;
     }
 }

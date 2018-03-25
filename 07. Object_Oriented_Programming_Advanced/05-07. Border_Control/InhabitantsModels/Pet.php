@@ -3,16 +3,14 @@
 namespace InhabitantsModels;
 
 
-class Pet implements Birthable
+class Pet extends InhabitantAbstract implements Birthable
 {
-
-    private $name;
 
     private $birthDate;
 
     public function __construct(string $name, string $birthDate)
     {
-        $this->name = $name;
+        parent::__construct($name);
         $this->birthDate = $birthDate;
     }
 
