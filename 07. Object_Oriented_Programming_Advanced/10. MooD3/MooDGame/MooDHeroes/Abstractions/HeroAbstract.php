@@ -9,53 +9,78 @@ use MooDGame\MooDHeroes\Interfaces\IHero;
 abstract class HeroAbstract implements IHero
 {
 
-    public function setUsername(): void
+    protected const PLAYER_TYPES = ["good", "bad"];
+
+    protected $username;
+
+    protected $password;
+
+    protected $level;
+
+    protected $sPoints;
+
+    protected $type;
+
+    public function __construct(
+      string $username,
+      string $type,
+      int $level
+    ) {
+        $this->setUsername($username);
+        $this->setPassword();
+        $this->setType($type);
+        $this->setLevel($level);
+    }
+
+    public function setUsername(string $name): void
     {
-        // TODO: Implement setUsername() method.
+        /*if (strlen($name) > 10 || !ctype_alpha($name)) {
+            throw new \Exception("Invalid Username");
+        }*/
+
+        $this->username = $name;
     }
 
     public function getUsername(): string
     {
-        // TODO: Implement getUsername() method.
-    }
-
-    public function setPassword(): void
-    {
-        // TODO: Implement setPassword() method.
+        return $this->username;
     }
 
     public function getPassword(): string
     {
-        // TODO: Implement getPassword() method.
+        return $this->password;
     }
 
-    public function setLevel(): void
+    public function setLevel(int $level): void
     {
-        // TODO: Implement setLevel() method.
+        if (!is_numeric($level)) {
+            throw new \Exception("Level not valid");
+        }
+
+        $this->level = $level;
     }
 
     public function getLevel(): int
     {
-        // TODO: Implement getLevel() method.
+        return $this->level;
     }
 
-    public function setSPoints(): void
+    public function setType(string $type): void
     {
-        // TODO: Implement setSPoints() method.
-    }
+        if (!in_array(strtolower($type), self::PLAYER_TYPES)) {
+            throw new \Exception("Invalid player type");
+        }
 
-    public function getSPoints(): float
-    {
-        // TODO: Implement getSPoints() method.
-    }
-
-    public function setType(): void
-    {
-        // TODO: Implement setType() method.
+        $this->type = $type;
     }
 
     public function getType(): string
     {
-        // TODO: Implement getType() method.
+        return $this->type;
+    }
+
+    public function __toString()
+    {
+        return "\"{$this->getUsername()}\" | \"{$this->getPassword()}\" -> {$this->getType()}" . PHP_EOL;
     }
 }

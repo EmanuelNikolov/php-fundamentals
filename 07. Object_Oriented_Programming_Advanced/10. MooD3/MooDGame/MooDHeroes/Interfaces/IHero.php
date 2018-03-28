@@ -7,7 +7,7 @@ namespace MooDGame\MooDHeroes\Interfaces;
 interface IHero
 {
 
-    public function setUsername(): void;
+    public function setUsername(string $name): void;
 
     public function getUsername(): string;
 
@@ -15,15 +15,17 @@ interface IHero
 
     public function getPassword(): string;
 
-    public function setLevel(): void;
+    public function setLevel(int $level): void;
 
     public function getLevel(): int;
 
-    public function setSPoints(): void;
+    public function setSPoints($sPoints): void;
 
-    public function getSPoints(): float;
+    public function getSPoints();
 
-    public function setType(): void;
+    public function setType(string $type): void;
 
     public function getType(): string;
+
+    public function calculation(): string;
 }
