@@ -9,8 +9,7 @@ use VehicleApp\VehicleModels\Abstractions\Vehicle;
 class App
 {
 
-    private const CURRENT_VEHICLE_COUNT = 2;
-
+    private const CURRENT_VEHICLE_COUNT = 3;
     /**
      * @var Vehicle[]
      */

@@ -11,17 +11,17 @@ class Car extends Vehicle
 
     protected const AC_MODIFIER = 0.9;
 
-    public function ACModifier(): void
+    public function drive(float $distance): void
     {
-        if ($this->getAC() === true) {
-            $this->setFuelConsumption(
-              $this->getFuelConsumption() + self::AC_MODIFIER
-            );
-        }
+        parent::drive($distance);
     }
 
     public function refuel(float $liters)
     {
+        if ($this->isTankFillable($liters)) {
+            throw new \Exception("Cannot fit fuel in tank");
+        }
+
         $this->setFuel($this->getFuel() + $liters);
     }
 }

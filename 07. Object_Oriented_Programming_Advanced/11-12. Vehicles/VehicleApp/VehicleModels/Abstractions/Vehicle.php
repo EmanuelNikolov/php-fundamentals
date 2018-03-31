@@ -7,29 +7,33 @@ namespace VehicleApp\VehicleModels\Abstractions;
 abstract class Vehicle implements Drivable, Refuelable, AirConditioned
 {
 
-    protected const CURRENT_AC_STATE = true;
+    protected const AC_MODIFIER = self::AC_MODIFIER;
 
     private $fuel = 0.;
 
     private $fuelConsumption;
 
+    private $tankCapacity;
+
     private $distanceTravelled = 0;
 
-    private $currentAC;
+    private $ACStatus;
 
     public function __construct(
       float $fuel,
-      float $fuelConsumption
+      float $fuelConsumption,
+      float $tankCapacity
     ) {
         $this->setFuel($fuel);
         $this->setFuelConsumption($fuelConsumption);
-        $this->setAC(self::CURRENT_AC_STATE);
-        $this->ACModifier();
+        $this->setTankCapacity($tankCapacity);
     }
 
-    public function drive(float $distance)
+    public function drive(float $distance): void
     {
-        $litersNeeded = $distance * $this->getFuelConsumption();
+        $this->ACStatus = true;
+
+        $litersNeeded = $this->fuelNeeded($distance);
 
         if ($litersNeeded > $this->getFuel()) {
             $class = basename(get_class($this));
@@ -45,6 +49,8 @@ abstract class Vehicle implements Drivable, Refuelable, AirConditioned
         $class = basename(get_class($this));
 
         echo "{$class} travelled {$distance} km" . PHP_EOL;
+
+
     }
 
     public function setDistanceTravelled(float $distance): void
@@ -59,6 +65,10 @@ abstract class Vehicle implements Drivable, Refuelable, AirConditioned
 
     public function setFuel(float $liters): void
     {
+        if ($liters <= 0) {
+            throw new \Exception("Fuel must be a positive number");
+        }
+
         $this->fuel = $liters;
     }
 
@@ -77,19 +87,40 @@ abstract class Vehicle implements Drivable, Refuelable, AirConditioned
         return $this->fuelConsumption;
     }
 
-    public function setAC(bool $bool): void
+    public function setTankCapacity(float $tankCapacity): void
     {
-        $this->currentAC = $bool;
+        $this->tankCapacity = $tankCapacity;
     }
 
-    public function getAC(): bool
+    public function getTankCapacity(): float
     {
-        return $this->currentAC;
+        return $this->tankCapacity;
+    }
+
+    public function getACStatus(): bool
+    {
+        return $this->ACStatus;
+    }
+
+    public function isTankFillable(float $liters): bool
+    {
+        return $this->getFuel() + $liters > $this->tankCapacity;
+    }
+
+    public function fuelNeeded(float $distance): float
+    {
+        $fuelConsumption = $this->getFuelConsumption();
+
+        if ($this->ACStatus === true) {
+            $fuelConsumption += static::AC_MODIFIER;
+        }
+
+        return $distance * $fuelConsumption;
     }
 
     public function __toString()
     {
-        $fuel = number_format($this->getFuel(), 2);
+        $fuel = number_format($this->getFuel(), 2, ".", "");
 
         return basename(get_class($this)) . ": {$fuel}";
     }

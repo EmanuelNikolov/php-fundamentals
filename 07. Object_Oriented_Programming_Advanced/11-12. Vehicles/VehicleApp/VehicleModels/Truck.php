@@ -13,13 +13,9 @@ class Truck extends Vehicle
 
     protected const FUEL_MODIFIER = 0.95;
 
-    public function ACModifier(): void
+    public function drive(float $distance): void
     {
-        if ($this->getAC() === true) {
-            $this->setFuelConsumption(
-              $this->getFuelConsumption() + self::AC_MODIFIER
-            );
-        }
+        parent::drive($distance);
     }
 
     public function refuel(float $liters)

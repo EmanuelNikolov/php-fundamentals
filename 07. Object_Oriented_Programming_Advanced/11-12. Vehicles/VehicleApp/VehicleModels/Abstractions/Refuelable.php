@@ -15,5 +15,13 @@ interface Refuelable
 
     public function getFuelConsumption(): float;
 
+    public function setTankCapacity(float $tankCapacity): void;
+
+    public function getTankCapacity(): float;
+
+    public function isTankFillable(float $liters): bool;
+
     public function refuel(float $liters);
+
+    public function fuelNeeded(float $distance): float;
 }
