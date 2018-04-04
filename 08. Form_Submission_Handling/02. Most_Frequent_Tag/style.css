@@ -1,0 +1,17 @@
+ol {
+    counter-reset: item;
+    display: inline;
+}
+
+li {
+    display: block;
+}
+
+li:before {
+    content: "";
+}
+
+#tagsInput {
+    display: block;
+    margin-bottom: 2em;
+}

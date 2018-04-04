@@ -11,7 +11,5 @@ class Mouse extends MammalAbs
 
     protected const SOUND = "SQUEEEAAAK!";
 
-    protected const FOOD_PREF = [
-      "Vegetable",
-    ];
+    protected const FOOD_PREF = ["Vegetable"];
 }

@@ -11,7 +11,5 @@ class Zebra extends MammalAbs
 
     protected const SOUND = "Zs";
 
-    protected const FOOD_PREF = [
-      "Vegetable",
-    ];
+    protected const FOOD_PREF = ["Vegetable"];
 }

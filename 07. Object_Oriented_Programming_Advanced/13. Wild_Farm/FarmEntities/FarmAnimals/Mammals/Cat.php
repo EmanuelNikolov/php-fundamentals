@@ -12,10 +12,7 @@ class Cat extends FelineAbs implements ICat
 
     protected const SOUND = "Meowwww";
 
-    protected const FOOD_PREF = [
-      "Meat",
-      "Vegetable",
-    ];
+    protected const FOOD_PREF = ["Meat", "Vegetable"];
 
     private $breed;
 

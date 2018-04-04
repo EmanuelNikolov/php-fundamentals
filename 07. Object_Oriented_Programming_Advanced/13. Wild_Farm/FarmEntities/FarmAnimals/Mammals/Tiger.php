@@ -11,7 +11,5 @@ class Tiger extends FelineAbs
 
     protected const SOUND = "ROAAR!!!";
 
-    protected const FOOD_PREF = [
-      "Meat",
-    ];
+    protected const FOOD_PREF = ["Meat"];
 }
