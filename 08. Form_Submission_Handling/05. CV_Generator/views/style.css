@@ -1,8 +1,8 @@
 .blockLabels {
-     display: block;
- }
+    display: block;
+}
 
 .main {
-    width: fit-content;
+    display: table;
     margin: auto
 }
