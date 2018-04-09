@@ -2,9 +2,7 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-    if (!isset($_SESSION['allTags'])) {
-        $_SESSION['allTags'] = [];
-    }
+    $_SESSION['allTags'] = $_SESSION['allTags'] ?? [];
 
     $currentTags = explode(", ", $_POST['tags']);
 

@@ -15,7 +15,7 @@
     <div>
         <ol id="">
             <?php foreach ($allTagsSorted as $tag => $count): ?>
-                <li><?= htmlspecialchars($tag . " : " . $count . " times"); ?></li>
+                <li><?= htmlspecialchars($tag . " : " . $count . " times") ?></li>
             <?php endforeach; ?>
         </ol>
     </div>
