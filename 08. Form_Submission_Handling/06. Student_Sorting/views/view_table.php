@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
 <?php if (isset($error)): ?>
     <h1 align="center"><?= $error ?></h1>
     <div align="center">

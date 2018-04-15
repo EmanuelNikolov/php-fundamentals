@@ -1,6 +1,7 @@
 <?php require_once "core/dropdown_options.php"; ?>
-<form action="core/backend.php" method="post">
-    <div>
+<link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
+<form align="center" action="core/backend.php" method="post">
+    <div align="center">
         <table>
             <thead>
             <tr>
