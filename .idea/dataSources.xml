@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="minions@localhost" uuid="00de6ddd-cf3c-457a-99c9-d1889256517f">
+    <data-source source="LOCAL" name="test@localhost" uuid="fce7d01a-0614-4163-8d97-28e88aad4c80">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/minions</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/test</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
