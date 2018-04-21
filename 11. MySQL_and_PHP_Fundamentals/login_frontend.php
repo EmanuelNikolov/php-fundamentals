@@ -23,10 +23,10 @@
                     <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Register</a>
+                    <a class="nav-link" href="register.php">Register</a>
                 </li>
                 <!--<li class="nav-item">
                     <a class="nav-link" href="#">Profile</a>
@@ -44,27 +44,29 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="forms">Register</h1>
+                    <h1 id="forms">Login</h1>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="bs-component">
-                    <fieldset>
-                        <div class="form-group">
-                            <label for="nickname">Nickname</label>
-                            <input class="form-control" id="nickname"
-                                   placeholder="Enter nickname"
-                                   type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input class="form-control" id="password" placeholder="Password"
-                                   type="password">
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <form method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="nickname">Nickname</label>
+                                <input class="form-control" id="nickname"
+                                       placeholder="Enter nickname"
+                                       type="text" name="nickname">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" id="password" placeholder="Password"
+                                       type="password" name="password">
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary" name="submit">Login</button>
+                    </form>
                 </div>
             </div>
         </div>
