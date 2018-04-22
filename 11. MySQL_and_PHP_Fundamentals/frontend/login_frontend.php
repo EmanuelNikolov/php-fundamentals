@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="frontend/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <title>Register</title>
+    <title>Login</title>
 </head>
-<body>
+<body class="" style="">
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
     <div class="container">
         <a class="navbar-brand" href="index.php">Forum</a>
@@ -22,10 +22,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="login.php">Login</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="register.php">Register</a>
                 </li>
                 <!--<li class="nav-item">
@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="forms">Register</h1>
+                    <h2 id="forms">Login</h2>
                 </div>
             </div>
         </div>
@@ -54,22 +54,18 @@
                     <form method="post">
                         <fieldset>
                             <div class="form-group">
-                                <label for="nickname">Nickname</label>
-                                <input class="form-control" id="nickname" placeholder="Enter nickname" type="text"
-                                       name="nickname">
+                                <label for="username">Username/Email</label>
+                                <input class="form-control" id="username"
+                                       placeholder="Enter username or email"
+                                       type="text" name="username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input class="form-control" id="password" placeholder="Password" type="password"
-                                       name="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordConfirm">Confirm Password</label>
-                                <input class="form-control" id="passwordConfirm" placeholder="Confirm Password"
-                                       type="password" name="passwordConfirm">
+                                <input class="form-control" id="password" placeholder="Password"
+                                       type="password" name="password">
                             </div>
                         </fieldset>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Login</button>
                     </form>
                 </div>
             </div>
