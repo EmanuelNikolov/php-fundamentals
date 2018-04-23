@@ -25,23 +25,31 @@
                     <a class="nav-link" href="index.php">Home<span
                                 class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="register.php">Register</a>
-                </li>
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>-->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile_edit.php">Edit profile</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                <?php endif; ?>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2"
-                       placeholder="Search not available" type="text" disabled>
+            <?php if (isset($_SESSION['user_id'])): ?>
+            <form class="form-inline my-2 my-lg-0" method="post"
+                  action="index.php">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit"
-                        disabled>Search
+                        name="logout">
+                    Logout
                 </button>
             </form>
+            <?php endif; ?>
         </div>
     </div>
 </div>

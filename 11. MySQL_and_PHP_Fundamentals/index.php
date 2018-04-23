@@ -1,6 +1,10 @@
 <?php
 require_once "app.php";
 
+if (isset($_POST['logout'])) {
+    session_destroy();
+}
+
 $query = <<<SQL
 SELECT username
 FROM users
