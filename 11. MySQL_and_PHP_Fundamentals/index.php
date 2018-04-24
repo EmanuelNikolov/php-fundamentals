@@ -3,16 +3,11 @@ require_once "app.php";
 
 if (isset($_POST['logout'])) {
     session_destroy();
+    header("Location: index.php");
+    exit;
 }
 
-$query = <<<SQL
-SELECT username
-FROM users
-ORDER BY username ASC
-SQL;
-$stmt = $db->prepare($query);
-$stmt->execute();
-$usersData = $stmt->fetchAll(PDO::FETCH_COLUMN);
+$userService = new UserService($db);
 
 //$app->loadTemplate("index_frontend");
 include "frontend/index_frontend.php";

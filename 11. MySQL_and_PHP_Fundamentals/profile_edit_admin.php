@@ -1,20 +1,23 @@
 <?php
 require_once "app.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit;
 }
 
+
+$id = $_SESSION['user_id'];
+
 $query = <<<SQL
-SELECT id, username, email, birthday
+SELECT username, email, birthday
 FROM users
-WHERE username = ?
+WHERE id = ?
 SQL;
 $stmt = $db->prepare($query);
 $stmt->execute(
   [
-    $_POST['username'],
+    $id,
   ]
 );
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +25,7 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 if (isset($_POST['submit'])) {
     $userService = new UserService($db);
     $userService->edit(
-      $data['id'],
+      $id,
       $data,
       $_POST['email'],
       $_POST['username'],
@@ -30,7 +33,7 @@ if (isset($_POST['submit'])) {
       $_POST['password'],
       $_POST['passwordConfirm']
     );
-    header("Location: users.php");
+    header("Location: profile.php");
     exit;
 }
 

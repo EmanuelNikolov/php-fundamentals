@@ -3,6 +3,8 @@
 class UserService implements UserServiceInterface
 {
 
+    private const ADMIN_KEYWORD = "admin";
+
     /**
      * @var \PDO
      */
@@ -77,7 +79,7 @@ class UserService implements UserServiceInterface
       DateTime $birthDate,
       string $password,
       string $passwordConfirm
-    ){
+    ) {
         $email = filter_var($email, FILTER_VALIDATE_EMAIL);
         if (!$email) {
             throw new EditException("Invalid email");
@@ -96,7 +98,7 @@ class UserService implements UserServiceInterface
             $stmt = $this->db->prepare($query);
             $stmt->execute(
               [
-                $username
+                $username,
               ]
             );
             if ($stmt->rowCount()) {
@@ -109,7 +111,7 @@ class UserService implements UserServiceInterface
             $stmt = $this->db->prepare($query);
             $stmt->execute(
               [
-                $email
+                $email,
               ]
             );
             if ($stmt->rowCount()) {
@@ -138,9 +140,12 @@ class UserService implements UserServiceInterface
 
     public function login(string $username, string $password): bool
     {
-        $query = "SELECT id, email, password 
-                    FROM users 
-                    WHERE username = :login OR email = :login";
+        $query = "SELECT u.id, u.email, u.password, r.role_name
+                    FROM users AS u
+                    INNER JOIN roles AS r
+                    ON u.role_id = r.id
+                    WHERE username = :login OR email = :login
+                    LIMIT 1";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(":login", $username);
@@ -154,6 +159,10 @@ class UserService implements UserServiceInterface
 
         $_SESSION['user_id'] = $userData['id'];
 
+        if ($userData['role_name'] === self::ADMIN_KEYWORD) {
+            $_SESSION['admin_id'] = self::ADMIN_KEYWORD;
+        }
+
         return true;
     }
 
@@ -163,7 +172,7 @@ class UserService implements UserServiceInterface
         $stmt = $this->db->prepare($query);
         $stmt->execute(
           [
-            $id
+            $id,
           ]
         );
 
@@ -176,7 +185,7 @@ class UserService implements UserServiceInterface
         $stmt = $this->db->prepare($query);
         $stmt->execute(
           [
-            $id
+            $id,
           ]
         );
 
@@ -189,7 +198,7 @@ class UserService implements UserServiceInterface
         $stmt = $this->db->prepare($query);
         $stmt->execute(
           [
-            $id
+            $id,
           ]
         );
 
@@ -202,5 +211,28 @@ class UserService implements UserServiceInterface
         }
 
         return $birthday->diff($currentTime)->days;
+    }
+
+    public function getAllUsernames(): array
+    {
+        $query = "SELECT username
+                    FROM users
+                    WHERE deleted_on IS NULL
+                    ORDER BY username ASC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function remove(string $username): bool
+    {
+        $query = "UPDATE users SET deleted_on = NOW() WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+
+        return $stmt->execute(
+          [
+            $username,
+          ]
+        );
     }
 }

@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <title>Profile</title>
+    <title>Home</title>
 </head>
 <body>
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
@@ -32,7 +32,8 @@
                     <a class="nav-link" href="profile.php">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile_edit.php">Edit profile</a>
+                    <a class="nav-link" href="profile_edit.php">Edit
+                        profile</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post"
@@ -45,24 +46,12 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="bs-docs-section">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="bs-component">
-                    <div class="jumbotron text-center">
-                        <h2 class="display-4">
-                            Здрасти, <?= htmlspecialchars($userService->getUsername($id)); ?>
-                            !
-                        </h2>
-                        <p class="lead">Дни до рожденния ти
-                            ден: <?= htmlspecialchars($userService->getDaysToBirthday($id)); ?></p>
-                        <hr class="my-4">
-                    </div>
-                </div>
+<div class="container h-100">
+        <div class="row h-100">
+            <div class="col-lg-12 my-auto text-center">
+                <h1>Removal successful!</h1>
             </div>
         </div>
-    </div>
 </div>
 </body>
 </html>

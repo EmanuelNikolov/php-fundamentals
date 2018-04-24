@@ -13,40 +13,25 @@
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
     <div class="container">
         <a class="navbar-brand" href="index.php">Forum</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false"
+                aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Home<span
+                                class="sr-only">(current)</span></a>
                 </li>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile_edit.php">Edit profile</a>
-                    </li>
-                <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Register</a>
-                    </li>
-                <?php endif; ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
             </ul>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <form class="form-inline my-2 my-lg-0" method="post"
-                      action="index.php">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"
-                            name="logout">
-                        Logout
-                    </button>
-                </form>
-            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -72,11 +57,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input class="form-control" id="password" placeholder="Password"
+                                <input class="form-control" id="password"
+                                       placeholder="Password"
                                        type="password" name="password">
                             </div>
                         </fieldset>
-                        <button type="submit" class="btn btn-primary" name="submit">Login</button>
+                        <button type="submit" class="btn btn-primary"
+                                name="submit">Login
+                        </button>
                     </form>
                 </div>
             </div>

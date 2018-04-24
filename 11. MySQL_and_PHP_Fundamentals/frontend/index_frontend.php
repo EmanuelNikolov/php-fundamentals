@@ -27,6 +27,9 @@
                 </li>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item">
+                        <a class="nav-link" href="users.php">Users</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -57,24 +60,8 @@
 <div class="container">
     <div class="bs-docs-section">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="page-header">
-                    <h2>Most recently registered users</h2>
-                </div>
-                <table class="table table-hover text-center">
-                    <thead>
-                    <tr class="table-primary">
-                        <th scope="col">Username</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($usersData as $datum): ?>
-                        <tr>
-                            <td scope="row"><?= htmlspecialchars($datum); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="col-lg-12 text-center">
+                <img class="img-thumbnail" src="https://i.pinimg.com/originals/2e/d4/5f/2ed45f90c1e748d7b007ef648c03de4d.jpg">
             </div>
         </div>
     </div>
