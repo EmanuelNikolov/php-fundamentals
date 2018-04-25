@@ -2,7 +2,6 @@
 require_once "app.php";
 
 if (isset($_POST['submit'])) {
-    $userService = new UserService($db);
     $userService->register(
       $_POST['email'],
       $_POST['username'],
@@ -15,5 +14,4 @@ if (isset($_POST['submit'])) {
     exit;
 }
 
-//$app->loadTemplate("register_frontend");
-include "frontend/register_frontend.php";
+$templateService->render("register");

@@ -72,14 +72,14 @@ class UserService implements UserServiceInterface
     }
 
     public function edit(
-      int $id,
-      array $userCurrentData,
+      \DTO\Profile $userCurrentData,
       string $email,
       string $username,
       DateTime $birthDate,
       string $password,
       string $passwordConfirm
     ) {
+        $id = $userCurrentData->getId();
         $email = filter_var($email, FILTER_VALIDATE_EMAIL);
         if (!$email) {
             throw new EditException("Invalid email");
@@ -93,7 +93,7 @@ class UserService implements UserServiceInterface
         }
         $password = password_hash($password, PASSWORD_BCRYPT);
 
-        if ($username !== $userCurrentData['username']) {
+        if ($username !== $userCurrentData->getUsername()) {
             $query = "SELECT 1 FROM users WHERE username = ?";
             $stmt = $this->db->prepare($query);
             $stmt->execute(
@@ -106,7 +106,7 @@ class UserService implements UserServiceInterface
             }
         }
 
-        if ($email !== $userCurrentData['email']) {
+        if ($email !== $userCurrentData->getEmail()) {
             $query = "SELECT 1 FROM users WHERE email = ?";
             $stmt = $this->db->prepare($query);
             $stmt->execute(
@@ -166,51 +166,20 @@ class UserService implements UserServiceInterface
         return true;
     }
 
-    public function getEmail(int $id): string
+    public function getUser($id, $username = null): \DTO\Profile
     {
-        $query = "SELECT email FROM users WHERE id = ?";
+        $query = "SELECT id, username, email, birthday
+                    FROM users
+                    WHERE id = ? OR username = ?";
         $stmt = $this->db->prepare($query);
         $stmt->execute(
           [
             $id,
+            $username,
           ]
         );
 
-        return $stmt->fetchColumn();
-    }
-
-    public function getUsername(int $id): string
-    {
-        $query = "SELECT username FROM users WHERE id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute(
-          [
-            $id,
-          ]
-        );
-
-        return $stmt->fetchColumn();
-    }
-
-    public function getDaysToBirthday(int $id): string
-    {
-        $query = "SELECT birthday FROM users WHERE id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute(
-          [
-            $id,
-          ]
-        );
-
-        $birthday = new DateTime($stmt->fetchColumn());
-        $age = date('Y') - $birthday->format('Y');
-        $birthday->modify("+{$age} years");
-        $currentTime = new DateTime();
-        if ($birthday < $currentTime) {
-            $birthday->modify("+1 year");
-        }
-
-        return $birthday->diff($currentTime)->days;
+        return $stmt->fetchObject(\DTO\Profile::class);
     }
 
     public function getAllUsernames(): array
@@ -234,5 +203,15 @@ class UserService implements UserServiceInterface
             $username,
           ]
         );
+    }
+
+    public function addCategory()
+    {
+        //TODO
+    }
+
+    public function addTopic()
+    {
+        //TODO
     }
 }

@@ -6,6 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$userService = new UserService($db);
+$data = $userService->getAllUsernames();
 
-include "frontend/users_frontend.php";
+$templateService->render("users", $data);

@@ -62,7 +62,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($userService->getAllUsernames() as $username): ?>
+                        <?php foreach ($data as $username): ?>
                             <tr>
                                 <td scope="row"><?= htmlspecialchars($username); ?></td>
                                 <td scope="row">
@@ -100,7 +100,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($userService->getAllUsernames() as $username): ?>
+                        <?php foreach ($data as $username): ?>
                             <tr>
                                 <td scope="row"><?= htmlspecialchars($username); ?></td>
                             </tr>

@@ -11,8 +11,8 @@ if (isset($_POST['remove'])) {
         header("Location: users.php");
         exit;
     }
-    $userService = new UserService($db);
     $username = $_POST['username'];
+    $data = $userService->getUser(null, $username);
     if ($userService->getUsername($_SESSION['user_id']) === $username) {
         header("Location: users.php");
         exit;
@@ -26,4 +26,4 @@ if (isset($_POST['remove'])) {
     }
 }
 
-include "frontend/profile_remove_frontend.php";
+$templateService->render("profile_remove");

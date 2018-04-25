@@ -14,8 +14,7 @@ interface UserServiceInterface
     );
 
     public function edit(
-      int $id,
-      array $userCurrentData,
+      \DTO\Profile $userCurrentData,
       string $email,
       string $username,
       DateTime $birthDate,

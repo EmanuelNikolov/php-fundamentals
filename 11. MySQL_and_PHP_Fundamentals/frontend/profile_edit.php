@@ -1,3 +1,4 @@
+<?php /** @var \DTO\Profile $data */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +60,7 @@
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input class="form-control" id="username"
-                                   value="<?= htmlspecialchars($data['username']); ?>"
+                                   value="<?= htmlspecialchars($data->getUsername()); ?>"
                                    type="text" name="username">
                         </div>
                         <div class="form-group">
@@ -80,14 +81,14 @@
                             <input class="form-control"
                                    id="inputEmail"
                                    aria-describedby="emailHelp"
-                                   value="<?= htmlspecialchars($data['email']); ?>"
+                                   value="<?= htmlspecialchars($data->getEmail()); ?>"
                                    type="email"
                                    name="email">
                         </div>
                         <div class="form-group">
                             <label for="dateInput">Birth Date</label>
                             <input class="form-control" type="date"
-                                   value="<?= $data['birthday']; ?>"
+                                   value="<?= $data->getBirthday(); ?>"
                                    id="dateInput" name="birthDate">
                         </div>
                     </fieldset>

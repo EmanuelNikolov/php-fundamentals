@@ -957,54 +957,103 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="241" parent="2" name="users">
+    <table id="241" parent="2" name="roles">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="242" parent="241" name="id">
+    <table id="242" parent="2" name="users">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="243" parent="241" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="241" name="username">
+    <column id="244" parent="241" name="role_name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="245" parent="241" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="246" parent="242" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="242" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="241" name="email">
+    <column id="248" parent="242" name="username">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="241" name="password">
+    <column id="249" parent="242" name="birthday">
       <Position>4</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="242" name="password">
+      <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="241" name="birthday">
-      <Position>5</Position>
-      <DataType>timestamp|0</DataType>
+    <column id="251" parent="242" name="role_id">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <DefaultExpression>&apos;2&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <index id="247" parent="241" name="username">
+    <column id="252" parent="242" name="deleted_on">
+      <Position>7</Position>
+      <DataType>timestamp|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="253" parent="242" name="email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="254" parent="242" name="username">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="248" parent="241" name="PRIMARY">
+    <index id="255" parent="242" name="FK_users_roles">
+      <ColNames>role_id</ColNames>
+    </index>
+    <key id="256" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="249" parent="241" name="username">
+    <key id="257" parent="242" name="email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+    <key id="258" parent="242" name="username">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
+    <foreign-key id="259" parent="242" name="FK_users_roles">
+      <ColNames>role_id</ColNames>
+      <RefSchemaName>forum</RefSchemaName>
+      <RefTableName>roles</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

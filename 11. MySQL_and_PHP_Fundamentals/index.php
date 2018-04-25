@@ -7,7 +7,4 @@ if (isset($_POST['logout'])) {
     exit;
 }
 
-$userService = new UserService($db);
-
-//$app->loadTemplate("index_frontend");
-include "frontend/index_frontend.php";
+$templateService->render("index");

@@ -2,7 +2,6 @@
 require_once "app.php";
 
 if (isset($_POST['submit'])) {
-    $userService = new UserService($db);
     $userService->login(
       $_POST['username'],
       $_POST['password']
@@ -18,5 +17,4 @@ if (isset($_POST['submit'])) {
     exit;
 }
 
-//$app->loadTemplate("login_frontend");
-include "frontend/login_frontend.php";
+$templateService->render("login");

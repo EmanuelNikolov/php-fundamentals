@@ -6,9 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$userService = new UserService($db);
-
 $id = $_SESSION['user_id'];
 
-//$app->loadTemplate("profile_frontend");
-include "frontend/profile_frontend.php";
+$data = $userService->getUser($id);
+
+$templateService->render("profile", $data);

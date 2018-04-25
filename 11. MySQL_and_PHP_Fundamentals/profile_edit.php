@@ -6,23 +6,13 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$query = <<<SQL
-SELECT id, username, email, birthday
-FROM users
-WHERE username = ?
-SQL;
-$stmt = $db->prepare($query);
-$stmt->execute(
-  [
-    $_POST['username'],
-  ]
-);
-$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$id = $_SESSION['user_id'];
+
+$data = $userService->getUser($id);
 
 if (isset($_POST['submit'])) {
-    $userService = new UserService($db);
     $userService->edit(
-      $data['id'],
       $data,
       $_POST['email'],
       $_POST['username'],
@@ -30,8 +20,8 @@ if (isset($_POST['submit'])) {
       $_POST['password'],
       $_POST['passwordConfirm']
     );
-    header("Location: users.php");
+    header("Location: profile.php");
     exit;
 }
 
-include "frontend/profile_edit_frontend.php";
+$templateService->render("profile_edit", $data);
