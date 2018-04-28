@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="users.php">Users</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="profile.php">Profile</a>
                 </li>
                 <li class="nav-item">
@@ -60,6 +60,14 @@
                             ден: <?= htmlspecialchars($data->getDaysToBirthday()); ?></p>
                         <hr class="my-4">
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component text-center">
+                    <a class="card-link" href="add_category.php">Add Category</a>
+                    <a class="card-link" href="categories.php">Categories</a>
                 </div>
             </div>
         </div>

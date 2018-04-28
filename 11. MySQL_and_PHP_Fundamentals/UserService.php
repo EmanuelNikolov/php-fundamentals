@@ -205,13 +205,26 @@ class UserService implements UserServiceInterface
         );
     }
 
-    public function addCategory()
+    public function addCategory(string $name): bool
     {
-        //TODO
+        $query = "INSERT INTO categories (name) VALUE (?)";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute(
+          [
+            $name,
+          ]
+        );
     }
 
-    public function addTopic()
+    public function addTopic(string $name, int $categoryId): bool
     {
-        //TODO
+        $query = "INSERT INTO topics (name, category_id) VALUE (?, ?)";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute(
+          [
+            $name,
+            $categoryId,
+          ]
+        );
     }
 }

@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="profile.php">Profile</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="profile_edit.php">Edit
                         profile</a>
                 </li>
