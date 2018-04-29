@@ -1,4 +1,4 @@
-<?php /** @var \DTO\Category $data */ ?>
+<?php /** @var \DTO\UserCategoriesViewData $data */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,13 +60,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $category): ?>
+                    <?php foreach ($data->getCategories() as $category): ?>
                         <tr>
-                            <td scope="row"><?= htmlspecialchars($category); ?></td>
+                            <td scope="row">
+                                <a class="card-link"
+                                   href="category.php?id=<?= $category->getId(); ?>">
+                                    <?= htmlspecialchars($category->getName()); ?>
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component text-center">
+                    <a class="card-link" href="add_category.php">
+                        Add Category</a>
+                </div>
             </div>
         </div>
     </div>

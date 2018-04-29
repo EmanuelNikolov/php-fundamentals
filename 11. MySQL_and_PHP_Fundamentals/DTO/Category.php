@@ -11,11 +11,6 @@ class Category
     private $name;
 
     /**
-     * @var \DTO\Topic[]
-     */
-    private $topics = [];
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -29,13 +24,5 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return \DTO\Topic[]
-     */
-    public function getTopics(): array
-    {
-        return $this->topics;
     }
 }

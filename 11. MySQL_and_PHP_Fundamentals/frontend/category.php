@@ -1,4 +1,4 @@
-<?php /** @var \DTO\Category $data */ ?>
+<?php /** @var \DTO\UserTopicsViewData $data */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home<span
-                          class="sr-only">(current)</span></a>
+                                class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="users.php">Users</a>
@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h2>TODO: Category Name</h2>
+                    <h2><?= $data->getFromCategory()->getName(); ?></h2>
                 </div>
                 <table class="table table-hover text-center">
                     <thead>
@@ -60,9 +60,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $topic): ?>
+                    <?php foreach ($data->getTopics() as $topic): ?>
                         <tr>
-                            <td scope="row"><?= htmlspecialchars($topic); ?></td>
+                            <td scope="row">
+                                <?= htmlspecialchars($topic->getName()); ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -72,7 +74,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="bs-component text-center">
-                    <a class="card-link" href="add_topic.php">Add Topic</a>
+                    <a class="card-link"
+                       href="add_topic.php?id=<?= $data->getFromCategory()->getId(); ?>">
+                        Add Topic
+                    </a>
                 </div>
             </div>
         </div>

@@ -227,4 +227,58 @@ class UserService implements UserServiceInterface
           ]
         );
     }
+
+    public function getCategories(): \DTO\UserCategoriesViewData
+    {
+        $userCategoriesViewData = new \DTO\UserCategoriesViewData();
+
+        $query = "SELECT id, name FROM categories";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $userCategoriesViewData->setCategories(
+          function () use ($stmt) {
+              while ($category = $stmt->fetchObject(\DTO\Category::class)) {
+                  yield $category;
+              }
+          }
+        );
+
+        return $userCategoriesViewData;
+    }
+
+    public function getTopics($categoryId): \DTO\UserTopicsViewData
+    {
+        $userTopicsViewData = new \DTO\UserTopicsViewData;
+
+        $query = "SELECT id, name FROM categories WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(
+          [
+            $categoryId
+          ]
+        );
+        $category = $stmt->fetchObject(\DTO\Category::class);
+        $userTopicsViewData->setFromCategory($category);
+
+        $query = "SELECT t.name, c.name AS category_name
+                    FROM topics AS t
+                    INNER JOIN categories AS c 
+                    ON t.category_id = c.id
+                    WHERE category_id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(
+          [
+            $categoryId,
+          ]
+        );
+        $userTopicsViewData->setTopics(
+          function () use ($stmt) {
+              while ($topic = $stmt->fetchObject(\DTO\Topic::class)) {
+                  yield $topic;
+              }
+          }
+        );
+
+        return $userTopicsViewData;
+    }
 }

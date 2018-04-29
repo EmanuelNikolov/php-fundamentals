@@ -1,13 +1,8 @@
 <?php
 require_once "app.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id'], $_SESSION['user_id'], $_POST['username'])) {
     header("Location: login.php");
-    exit;
-}
-
-if (!isset($_SESSION['admin_id'], $_POST['username'])) {
-    header("Location: users.php");
     exit;
 }
 
