@@ -10,8 +10,6 @@ class Topic
 
     private $name;
 
-    private $category_name;
-
     /**
      * @return mixed
      */
@@ -26,10 +24,5 @@ class Topic
     public function getName()
     {
         return $this->name;
-    }
-
-    public function getCategoryName()
-    {
-        return $this->category_name;
     }
 }

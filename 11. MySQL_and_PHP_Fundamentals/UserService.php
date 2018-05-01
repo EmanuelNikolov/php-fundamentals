@@ -248,8 +248,6 @@ class UserService implements UserServiceInterface
 
     public function getTopics($categoryId): \DTO\UserTopicsViewData
     {
-        $userTopicsViewData = new \DTO\UserTopicsViewData;
-
         $query = "SELECT id, name FROM categories WHERE id = ?";
         $stmt = $this->db->prepare($query);
         $stmt->execute(
@@ -257,10 +255,9 @@ class UserService implements UserServiceInterface
             $categoryId
           ]
         );
-        $category = $stmt->fetchObject(\DTO\Category::class);
-        $userTopicsViewData->setFromCategory($category);
+        $userTopicsViewData = $stmt->fetchObject(\DTO\UserTopicsViewData::class);
 
-        $query = "SELECT t.name, c.name AS category_name
+        $query = "SELECT t.id, t.name
                     FROM topics AS t
                     INNER JOIN categories AS c 
                     ON t.category_id = c.id

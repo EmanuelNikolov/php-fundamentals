@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h2><?= $data->getFromCategory()->getName(); ?></h2>
+                    <h2><?= htmlspecialchars($data->getName()); ?></h2>
                 </div>
                 <table class="table table-hover text-center">
                     <thead>
@@ -75,7 +75,7 @@
             <div class="col-lg-12">
                 <div class="bs-component text-center">
                     <a class="card-link"
-                       href="add_topic.php?id=<?= $data->getFromCategory()->getId(); ?>">
+                       href="add_topic.php?id=<?= $data->getId(); ?>">
                         Add Topic
                     </a>
                 </div>
